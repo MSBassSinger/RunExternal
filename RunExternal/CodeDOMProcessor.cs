@@ -89,12 +89,12 @@ namespace RunExternal
 								} // END if (File.Exists(pExecutableFullPath))
 								else
 								{
-									ReturnVal.Add(String.Format("A reference file was empty.{0}", Environment.NewLine));
+									ReturnVal.Add($"A reference file was empty.{Environment.NewLine}");
 								}
 							}  // END if (pExecutableFullPath.Length > 0)
 							else
 							{
-								ReturnVal.Add(String.Format("A reference file was null.{0}", Environment.NewLine));
+								ReturnVal.Add($"A reference file was null.{Environment.NewLine}");
 							}
 
 						}  // END foreach (String RefAssembly in pReferencedAssemblies)
@@ -145,9 +145,7 @@ namespace RunExternal
 
 						foreach (CompilerError oErr in CompileResults.Errors)
 						{
-							ReturnVal.Add(String.Format("Error# [{0}] - [{1}] Line# [{2}] Column# [{3}].{4}",
-											oErr.ErrorNumber.ToString(), oErr.ErrorText, oErr.Line.ToString(),
-											oErr.Column.ToString(), Environment.NewLine));
+							ReturnVal.Add($"Error# [{oErr.ErrorNumber.ToString()}] - [{oErr.ErrorText}] Line# [{oErr.Line.ToString()}] Column# [{oErr.Column.ToString()}].{Environment.NewLine}");
 
 						}  // END foreach (CompilerError oErr in CompileResults.Errors)
 
@@ -185,13 +183,10 @@ namespace RunExternal
 			{
 				// Insert your exception handling code here.
 				// This is only temporary.
-				System.Windows.Forms.MessageBox.Show(String.Format("Error Message [{0}]{1}Error Source [{2}]",
-												exUnhandled.Message,
-												Environment.NewLine,
-												exUnhandled.Source),
-								"Error",
-								System.Windows.Forms.MessageBoxButtons.OK,
-								System.Windows.Forms.MessageBoxIcon.Error);
+				System.Windows.Forms.MessageBox.Show($"Error Message [{exUnhandled.Message}]{Environment.NewLine}Error Source [{exUnhandled.Source}]",
+													"Error",
+													System.Windows.Forms.MessageBoxButtons.OK,
+													System.Windows.Forms.MessageBoxIcon.Error);
 
 
 			}  // END catch (Exception exUnhandled)
@@ -287,12 +282,12 @@ namespace RunExternal
 								} // END if (File.Exists(pExecutableFullPath))
 								else
 								{
-									ReturnVal.Add(String.Format("A reference file was empty.{0}", Environment.NewLine));
+									ReturnVal.Add($"A reference file was empty.{Environment.NewLine}");
 								}
 							}  // END if (pExecutableFullPath.Length > 0)
 							else
 							{
-								ReturnVal.Add(String.Format("A reference file was null.{0}", Environment.NewLine));
+								ReturnVal.Add($"A reference file was null.{Environment.NewLine}");
 							}
 
 						}  // END foreach (String RefAssembly in pReferencedAssemblies)
@@ -335,9 +330,7 @@ namespace RunExternal
 
 						foreach (CompilerError oErr in CompileResults.Errors)
 						{
-							ReturnVal.Add(String.Format("Error# [{0}] - [{1}] Line# [{2}] Column# [{3}].{4}",
-											oErr.ErrorNumber.ToString(), oErr.ErrorText, oErr.Line.ToString(),
-											oErr.Column.ToString(), Environment.NewLine));
+							ReturnVal.Add($"Error# [{oErr.ErrorNumber.ToString()}] - [{oErr.ErrorText}] Line# [{oErr.Line.ToString()}] Column# [{oErr.Column.ToString()}].{Environment.NewLine}");
 
 						}  // END foreach (CompilerError oErr in CompileResults.Errors)
 
@@ -386,7 +379,7 @@ namespace RunExternal
 
 									foreach (ParameterInfo TempParam in TempConstructorParam)
 									{
-										ParmString += String.Format("{0} {1}, ", TempParam.ParameterType.FullName, TempParam.Name);
+										ParmString += $"{TempParam.ParameterType.FullName} {TempParam.Name}, ";
 									}
 								}
 
@@ -407,7 +400,7 @@ namespace RunExternal
 									{
 										String StringToAdd = "";
 
-										StringToAdd = String.Format("{0} {1}, ", TempMember.ReflectedType.FullName, TempMember.Name);
+										StringToAdd = $"{TempMember.ReflectedType.FullName} {TempMember.Name}";
 
 										pMembers.Add(StringToAdd);
 									}  // END if (TempMember.Module.ScopeName.Equals(pModuleName))
@@ -428,7 +421,7 @@ namespace RunExternal
 
 										String StringToAdd = "";
 
-										StringToAdd = String.Format("{0} {1}, ", TempField.ReflectedType.FullName, TempField.Name);
+										StringToAdd = $"{TempField.ReflectedType.FullName} {TempField.Name}";
 
 										pFields.Add(StringToAdd);
 									}  // END if (TempField.Module.ScopeName.Equals(pModuleName))
@@ -451,7 +444,7 @@ namespace RunExternal
 									{
 										String StringToAdd = "";
 
-										StringToAdd = TempMember.ToString();  // String.Format("{0} {1}, ", TempMember.GetType().FullName, TempMember.Name);
+										StringToAdd = TempMember.ToString();
 
 										pMembers.Add(StringToAdd);
 									}
@@ -469,7 +462,7 @@ namespace RunExternal
 								{
 									String StringToAdd = "";
 
-									StringToAdd = String.Format("{0} {1}, ", TempMethod.ReturnType.FullName, TempMethod.Name);
+									StringToAdd = $"{TempMethod.ReturnType.FullName} {TempMethod.Name}";
 
 									ParameterInfo[] TempParams = TempMethod.GetParameters();
 
@@ -483,11 +476,11 @@ namespace RunExternal
 
 										if (DefaultValue.ToString().Length == 0)
 										{
-											ParmString += String.Format("{0} {1}, ", ParamTypeName, ParamName);
+											ParmString += $"{ParamTypeName} {ParamName}, ";
 										}
 										else
 										{
-											ParmString += String.Format("{0} {1}={2}, ", ParamTypeName, ParamName, DefaultValue.ToString());
+											ParmString += $"{ParamTypeName} {ParamName}={DefaultValue.ToString()}, ";
 
 										}
 									}  // END foreach (ParameterInfo TempParam in TempParams)
@@ -518,7 +511,7 @@ namespace RunExternal
 									{
 										String StringToAdd = "";
 
-										StringToAdd = String.Format("{0} {1}, ", TempProperty.PropertyType.FullName, TempProperty.Name);
+										StringToAdd = $"{TempProperty.PropertyType.FullName} {TempProperty.Name}, ";
 
 										if (TempProperty.CanRead && TempProperty.CanWrite)
 										{
@@ -534,7 +527,7 @@ namespace RunExternal
 										}
 										else
 										{
-										// No action
+											// No action
 										}
 
 										pProperties.Add(StringToAdd);
@@ -562,13 +555,10 @@ namespace RunExternal
 			{
 				// Insert your exception handling code here.
 				// This is only temporary.
-				System.Windows.Forms.MessageBox.Show(String.Format("Error Message [{0}]{1}Error Source [{2}]",
-												exUnhandled.Message,
-												Environment.NewLine,
-												exUnhandled.Source),
-								"Error",
-								System.Windows.Forms.MessageBoxButtons.OK,
-								System.Windows.Forms.MessageBoxIcon.Error);
+				System.Windows.Forms.MessageBox.Show($"Error Message [{exUnhandled.Message}]{Environment.NewLine}Error Source [{exUnhandled.Source}]",
+													"Error",
+													System.Windows.Forms.MessageBoxButtons.OK,
+													System.Windows.Forms.MessageBoxIcon.Error);
 
 
 			}  // END catch (Exception exUnhandled)
@@ -649,13 +639,10 @@ namespace RunExternal
 			{
 				// Insert your exception handling code here.
 				// This is only temporary.
-				System.Windows.Forms.MessageBox.Show(String.Format("Error Message [{0}]{1}Error Source [{2}]",
-												exUnhandled.Message,
-												Environment.NewLine,
-												exUnhandled.Source),
-								"Error",
-								System.Windows.Forms.MessageBoxButtons.OK,
-								System.Windows.Forms.MessageBoxIcon.Error);
+				System.Windows.Forms.MessageBox.Show($"Error Message [{exUnhandled.Message}]{Environment.NewLine}Error Source [{exUnhandled.Source}]",
+													"Error",
+													System.Windows.Forms.MessageBoxButtons.OK,
+													System.Windows.Forms.MessageBoxIcon.Error);
 
 			}  // END Catch
 
@@ -709,13 +696,10 @@ namespace RunExternal
 			{
 				// Insert your exception handling code here.
 				// This is only temporary.
-				System.Windows.Forms.MessageBox.Show(String.Format("Error Message [{0}]{1}Error Source [{2}]",
-												exUnhandled.Message,
-												Environment.NewLine,
-												exUnhandled.Source),
-								"Error",
-								System.Windows.Forms.MessageBoxButtons.OK,
-								System.Windows.Forms.MessageBoxIcon.Error);
+				System.Windows.Forms.MessageBox.Show($"Error Message [{exUnhandled.Message}]{Environment.NewLine}Error Source [{exUnhandled.Source}]",
+													"Error",
+													System.Windows.Forms.MessageBoxButtons.OK,
+													System.Windows.Forms.MessageBoxIcon.Error);
 
 			}  // END Catch
 

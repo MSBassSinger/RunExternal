@@ -19,12 +19,12 @@ namespace RunExternal
 	public class TestObject
 	{
 
-	public String ComputerName
+		public String ComputerName
 		{
-		get
+			get
 			{
-			// Just something to show in the demo
-			return String.Format("{0} using computer {1}", Environment.UserName, Environment.MachineName);
+				// Just something to show in the demo
+				return $"{Environment.UserName} using computer {Environment.MachineName} on {DateTime.Now.ToShortDateString()} at {DateTime.Now.ToShortTimeString()}.";
 			}
 		}  // END public String ComputerName
 

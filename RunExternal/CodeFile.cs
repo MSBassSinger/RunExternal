@@ -17,6 +17,10 @@ using Microsoft.VisualBasic;
 
 namespace RunExternal
 {
+	/// <summary>
+	/// Class to handle the code used.
+	/// Code is updated for runtime compilation, and stats provided on the compilation.
+	/// </summary>
 	public class CodeFile
 	{
 
@@ -44,7 +48,7 @@ namespace RunExternal
 		/// </summary>
 		/// <param name="CodeLines"></param>
 		/// <returns></returns>
-		public List<String> SetAndCompileCSCode(String[] CodeLines, 
+		public List<String> SetAndCompileCSCode(String[] CodeLines,
 												out String pFullTypeName,
 												out String pModuleName,
 												out List<String> pConstructors,
@@ -101,8 +105,8 @@ namespace RunExternal
 
 					// Here is where we get the first class name to use as the main class name.
 					// This code could be refined to find all class names and let the user define the main class name.
-					if ((CodeLine.IndexOf(" class ", 0, StringComparison.CurrentCultureIgnoreCase) > 0) && 
-					    (m_MainClassName.Length == 0))
+					if ((CodeLine.IndexOf(" class ", 0, StringComparison.CurrentCultureIgnoreCase) > 0) &&
+						(m_MainClassName.Length == 0))
 					{
 						OK2UseLine = true;
 
@@ -125,8 +129,8 @@ namespace RunExternal
 
 				// Compile the code, and get back info on it.
 				// DOMRetVal is a list of messages on why it did or did not compile.
-				DOMRetVal = oDOM.Compile(Code2Use, 
-										RefAssemblies, 
+				DOMRetVal = oDOM.Compile(Code2Use,
+										RefAssemblies,
 										m_MainClassName,
 										out pFullTypeName,
 										out pModuleName,
@@ -147,7 +151,7 @@ namespace RunExternal
 					// Tell the user what assemblies we found.
 					for (int i = 0; i < RefAssemblies.Count; i++)
 					{
-						RetVal.Add(String.Format("Reference [{0}] is [{1}].", (i + 1).ToString(), RefAssemblies[i]) + Environment.NewLine);
+						RetVal.Add($"Reference [{(i + 1).ToString()}] is [{RefAssemblies[i]}].{Environment.NewLine}");
 
 					}  // END for (int i = 0; i < RefAssemblies.Count; i++)
 				}
@@ -185,13 +189,10 @@ namespace RunExternal
 			{
 				// Insert your exception handling code here.
 				// This is only temporary.
-				System.Windows.Forms.MessageBox.Show(String.Format("Error Message [{0}]{1}Error Source [{2}]",
-												exUnhandled.Message,
-												Environment.NewLine,
-												exUnhandled.Source),
-								"Error",
-								System.Windows.Forms.MessageBoxButtons.OK,
-								System.Windows.Forms.MessageBoxIcon.Error);
+				System.Windows.Forms.MessageBox.Show($"Error Message [{exUnhandled.Message}]{Environment.NewLine}Error Source [{exUnhandled.Source}]",
+													"Error",
+													System.Windows.Forms.MessageBoxButtons.OK,
+													System.Windows.Forms.MessageBoxIcon.Error);
 
 			}  // END Catch
 			finally
@@ -317,13 +318,10 @@ namespace RunExternal
 			{
 				// Insert your exception handling code here.
 				// This is only temporary.
-				System.Windows.Forms.MessageBox.Show(String.Format("Error Message [{0}]{1}Error Source [{2}]",
-												exUnhandled.Message,
-												Environment.NewLine,
-												exUnhandled.Source),
-								"Error",
-								System.Windows.Forms.MessageBoxButtons.OK,
-								System.Windows.Forms.MessageBoxIcon.Error);
+				System.Windows.Forms.MessageBox.Show($"Error Message [{exUnhandled.Message}]{Environment.NewLine}Error Source [{exUnhandled.Source}]",
+													"Error",
+													System.Windows.Forms.MessageBoxButtons.OK,
+													System.Windows.Forms.MessageBoxIcon.Error);
 
 			}  // END Catch
 
@@ -373,14 +371,6 @@ namespace RunExternal
 							m_RefAssemblies = null;
 						}
 
-
-						//if (m_ParamTypes != null)
-						//{
-						//    m_ParamTypes.Clear();
-
-						//    m_ParamTypes = null;
-						//}
-
 						if (m_CodeLines != null)
 						{
 							Array.Clear(m_CodeLines, 0, m_CodeLines.Length);
@@ -400,13 +390,10 @@ namespace RunExternal
 			{
 				// Insert your exception handling code here.
 				// This is only temporary.
-				System.Windows.Forms.MessageBox.Show(String.Format("Error Message [{0}]{1}Error Source [{2}]",
-												exUnhandled.Message,
-												Environment.NewLine,
-												exUnhandled.Source),
-								"Error",
-								System.Windows.Forms.MessageBoxButtons.OK,
-								System.Windows.Forms.MessageBoxIcon.Error);
+				System.Windows.Forms.MessageBox.Show($"Error Message [{exUnhandled.Message}]{Environment.NewLine}Error Source [{exUnhandled.Source}]",
+													"Error",
+													System.Windows.Forms.MessageBoxButtons.OK,
+													System.Windows.Forms.MessageBoxIcon.Error);
 
 			}  // END Catch
 

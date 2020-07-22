@@ -30,7 +30,7 @@ namespace RunExternal
 		}
 
 		/// <summary>
-		/// The uses wants to execute the external script, so we compile first, then execute.
+		/// The user wants to execute the external script, so we compile first, then execute.
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -38,13 +38,15 @@ namespace RunExternal
 		{
 
 			// Compile, and pass a flag in as true (execute)
+			CompileAndExecuteButton.Enabled = false;
 			DoCompile(true);
+			CompileAndExecuteButton.Enabled = true;
 
 
 		}  // END private void CompileAndExecuteButton_Click(object sender, EventArgs e)
 
 		/// <summary>
-		/// 
+		/// The user weants to compile the script, 
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -52,13 +54,15 @@ namespace RunExternal
 		{
 
 			// Compile, and pass a flag in as false (do NOT execute)
+			CompileButton.Enabled = false;
 			DoCompile(false);
+			CompileButton.Enabled = true;
 
 
 		}  // END private void CompileButton_Click(object sender, EventArgs e)
 
 		/// <summary>
-		/// 
+		/// This method compiles the file read in (or typed in), and optionally executes it.
 		/// </summary>
 		/// <param name="pExecute"></param>
 		private void DoCompile(Boolean pExecute)
@@ -334,8 +338,8 @@ namespace RunExternal
 						Int32 LineNum = CSTextBox.GetLineFromCharIndex(CharPos);
 						Int32 ColNum = CSTextBox.SelectionStart - CSTextBox.GetFirstCharIndexFromLine(LineNum);
 
-						RowColStatus.Items["RowNum"].Text = String.Format("Row {0}", (LineNum + 1).ToString());
-						RowColStatus.Items["ColNum"].Text = String.Format("Col {0}", (ColNum + 1).ToString());
+						RowColStatus.Items["RowNum"].Text = $"Row {(LineNum + 1).ToString()}";
+						RowColStatus.Items["ColNum"].Text = $"Col {(ColNum + 1).ToString()}";
 					}
 				}  // END else of [if (CSTextBox.Text.Length == 0)]
 
