@@ -8,9 +8,9 @@ namespace JeffJones.ExternalCode
 	public class JJScriptTest
 	{
 
-		public System.Int32 TestMemberInt = 0;
+		public int TestMemberInt = 0;
 
-		private System.String m_Message = "";
+		private string m_Message = "";
 
 		private System.String m_Caption = "";
 
@@ -20,7 +20,7 @@ namespace JeffJones.ExternalCode
 		/// <param name="pTestObject"></param>
 		/// <param name="pCaption"></param>
 		/// <param name="pTestObject"></param>
-		public void ShowMessage(System.String pMessage, System.String pCaption, RunExternal.TestObject pTestObject)
+		public void ShowMessage(string pMessage, string pCaption, RunExternal.TestObject pTestObject)
 		{
 
 			m_Message = pMessage;
